@@ -5,28 +5,29 @@ export default function Home() {
     {
       title: "Sales & Profits Analytics Dashboard",
       tech: "Python • Excel • Power BI",
-      desc: "ETL + model + dashboard to identify at-risk customers (AUC .78).",
-      link: "#", // you can change to an external doc if you have one
+      desc: "Developed to explore sales, costs and profits across cities, products, managers and purchase types.Includes dynamic filters, map visuals, KPI cards and interactable elements so that stake holders can understand the data, uncover trends and quikly identify profit drivers",
+      pbix: "/sales Dashboard.pbix", // add a custom field for pbix 
+      pdf: "/Sales Dashboard.pdf",
       img: "/proj-sales.jpg",
     },
 {
       title: "Automobile Performance Report",
       tech: "Tableau • Excel",
-      desc: "Map-based carpooling MVP with route matching and basic analytics.",
+      desc: "Created two connected dashboards that allow users to track fuel efficiency, horsepower, and brand popularity over time. Drill-down options include origin, cylinders, and model year, as well as dynamic filters, scatterplots, and bar charts. Provides a comprehensive image of how different regions and brands compared in terms of MPG, horsepower, and number of models between the 1970s and 1980s. (click me!)",
       link: "https://public.tableau.com/app/profile/thang.tran3889/viz/Autombileproject/Branddash",
       img: "/proj-automobile.jpg",
     },
     {
       title: "Employee Recognition & Rewards System",
       tech: "Microsoft Slides • Microsoft Excel • Lucidchart • Python",
-      desc: "Automated weekly KPIs; reduced manual work by ~6h/week.",
-      link: "#",
+      desc: "Designed and documented a Slack-integrated Employee Recognition & Rewards System (ERRS) to improve morale, engagement and retention. (click me!)",
+      link: "ERRS final report.docx.pdf",
       img: "/proj-errs.jpg",
     },
       {
       title: "Netflix Data Mining Workflows Project",
       tech: "Rapidminer • Microsoft Excel • Python ",
-      desc: "Automated weekly KPIs; reduced manual work by ~6h/week.",
+      desc: "Analyzed and cleaned a Netflix shows and movives dataset using the Naives Bayves model to uncover patterns in genre, country of origin and ratings with a accuracy of 99.97%. Found movies dominate over TV shows; dramas, comedies and documentaries are most common; US, India and UK lead in production.",
       link: "#",
       img: "/proj-netflix.jpg",
     },
@@ -38,9 +39,9 @@ export default function Home() {
       period: "June 2023 – May 2024",
       location: "Wilmington, MA",
       bullets: [
-        "Built Power BI dashboards used by 5 regions; cut reporting time by 60%.",
-        "Designed SQL models (CTEs/window functions) powering weekly KPIs.",
-        "Automated Excel workflows with Python (pandas), reducing manual work ~6 h/week."
+        "I had a really good time working at Lightforce, I collaborated with the process engineering team and the floor technicians to help improve process and production by 20%. .",
+        "Gained alot of experience in time management, cross team collaboration and leadership through the engineers and my supervisor",
+        "Assisted in python code debugging and quality assurance for gear that the floor technicians used, also assisted the IT team on several occasions with computer or hardware issues"
       ],
       logo: "/lightforce.jpg", // optional logo
       link: "https://lf.co/",         // optional link
@@ -51,8 +52,8 @@ export default function Home() {
       period: "May 2022 – Jun 2022",
       location: "Randolph, MA",
       bullets: [
-        "Segmented 100k customers (k-means) to improve targeting (+8% CTR).",
-        "Built churn features (RFM, tenure) and baseline model (AUC .78)."
+        "Performed precision assembly and QA checks on 100+ aviator eyewear units, ensuring compliance with manufacturing standards. ",
+        "Implemented improvements to shipping workflow, reducing errors in rates in product deliveries"
       ],
       logo: "/randolph.jpg",
       link: "https://www.randolphusa.com/?srsltid=AfmBOoqb3mv_l_qhSavZZiozCguZAclYZfdDcRiuK76tjyIXimcdZV1B",
@@ -102,7 +103,7 @@ export default function Home() {
 
           {/* quick value line */}
           <p className="mt-6 max-w-xl text-white/80">
-            Turning messy data into clear decisions — SQL, Python (pandas), and BI (Power BI / Tableau).
+            Turning messy data into clear decisions with SQL, Python (pandas), and BI (Power BI / Tableau).
           </p>
 
           {/* CTAs */}
@@ -124,9 +125,11 @@ export default function Home() {
           <div className="max-w-md rounded-xl bg-white p-6 text-gray-900 shadow-md">
             <h2 className="text-2xl font-semibold">About Me</h2>
             <p className="mt-3 leading-relaxed text-gray-700">
-              I’m a data analyst who loves shaping ambiguous datasets into insights teams can act on.
-              Comfortable across the stack: cleaning & joining data (SQL), analysis & automation (Python),
-              and building crisp dashboards (Power BI / Tableau).
+             Welcome to my website! I’m Thang Tran, 
+		a Management Information Systems student at UMass Lowell passionate about 
+		turning complex data into clear, actionable insights. Through my co-op at 
+		Lightforce Orthodontics and multiple analytics projects, I’ve gained hands-on 
+		experience with SQL, Python, Power BI and Tableau. 
             </p>
             <a
               href="#contact"
@@ -150,32 +153,45 @@ export default function Home() {
     const clickable = p.link && p.link !== "#";
 const CardContent = (
   <article
-  className={`relative z-10 rounded-xl bg-white p-6 text-gray-900 shadow hover:shadow-xl transition-transform duration-200 hover:-translate-y-1 ${
-  p.title === "Sales & Profits Analytics Dashboard" ? "p-6 pb-32" : "p-6"
-}`}
-
+    className="relative z-10 rounded-xl bg-white p-6 text-gray-900 shadow hover:shadow-xl transition-transform duration-200 hover:-translate-y-1"
   >
-        <h3 className="text-xl font-semibold">{p.title}</h3>
-        <p className="mt-1 text-sm text-gray-500">{p.tech}</p>
+    <h3 className="text-xl font-semibold">{p.title}</h3>
+    <p className="mt-1 text-sm text-gray-500">{p.tech}</p>
 
-        {p.img && (
-          <Image
-            src={p.img}
-            alt={`${p.title} screenshot`}
-            width={640}
-            height={360}
-            className="mt-3 rounded-lg border border-gray-100"
-          />
-        )}
+    {p.img && (
+      <Image
+        src={p.img}
+        alt={`${p.title} screenshot`}
+        width={640}
+        height={360}
+        className="mt-3 rounded-lg border border-gray-100"
+      />
+    )}
 
-        <ul className="mt-3 list-disc space-y-1 pl-5 text-gray-700">
-          <li>{p.desc}</li>
-          <li>
-            <span className="font-medium">Impact:</span> Replace this line with a number if you have one
-            (e.g., “-60% reporting time”).
-          </li>
-        </ul>
-      </article>
+    <p className="mt-3 text-gray-700">{p.desc}</p>
+
+    <div className="mt-4 flex flex-wrap gap-3">
+      {p.pbix && (
+        <a
+          href={p.pbix}
+          className="rounded bg-black px-3 py-1.5 text-white text-sm hover:opacity-90"
+          download
+        >
+          Interactive (PBIX)
+        </a>
+      )}
+      {p.pdf && (
+        <a
+          href={p.pdf}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="rounded border border-black px-3 py-1.5 text-sm hover:bg-black hover:text-white"
+        >
+          Non-Interactive (PDF)
+        </a>
+      )}
+    </div>
+  </article>
     );
 
     return (
