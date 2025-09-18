@@ -40,7 +40,7 @@ export default function Home() {
       location: "Wilmington, MA",
       bullets: [
         "I had a really good time working at Lightforce, I collaborated with the process engineering team and the floor technicians to help improve process and production by 20%. .",
-        "Gained alot of experience in time management, cross team collaboration and leadership through the engineers and my supervisor",
+        "Gained alot of experience in time management, cross team collaboration and leadership through the engineers and my supervisor. Was given the oppurtunity to run my own printline of marketing parts for the whole company, printing with low error rates and efficient time",
         "Assisted in python code debugging and quality assurance for gear that the floor technicians used, also assisted the IT team on several occasions with computer or hardware issues"
       ],
       logo: "/lightforce.jpg", // optional logo
