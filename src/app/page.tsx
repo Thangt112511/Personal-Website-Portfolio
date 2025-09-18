@@ -302,7 +302,7 @@ export default function Home() {
           <div>
             <h2 className="text-3xl font-semibold">Contact</h2>
             <p className="mt-3 max-w-prose text-white/80">
-              Want to talk about an opportunity or a project? Reach out — I’m based in the Greater Boston area and open to roles.
+              Want to talk about an opportunity or a project? Reach out! I’m based in the Greater Boston area and open to roles.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
   <a
