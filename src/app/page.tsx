@@ -125,11 +125,10 @@ export default function Home() {
           <div className="max-w-md rounded-xl bg-white p-6 text-gray-900 shadow-md">
             <h2 className="text-2xl font-semibold">About Me</h2>
             <p className="mt-3 leading-relaxed text-gray-700">
-             Welcome to my website! I’m Thang Tran, 
-		a Management Information Systems student at UMass Lowell passionate about 
-		turning complex data into clear, actionable insights. Through my co-op at 
+             	Welcome to my website! I’m Thang Tran, a UMass Lowell graduate with a degree in management information system.
+                I am passionate about turning complex data into clear, actionable insights and making web pages. Through my co-op at 
 		Lightforce Orthodontics and multiple analytics projects, I’ve gained hands-on 
-		experience with SQL, Python, Power BI and Tableau. 
+		experience with SQL, Python, Power BI and Tableau. I hope we can meet soon!
             </p>
             <a
               href="#contact"
