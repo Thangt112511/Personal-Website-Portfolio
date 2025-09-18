@@ -27,7 +27,7 @@ export default function Home() {
       {
       title: "Netflix Data Mining Workflows Project",
       tech: "Rapidminer • Microsoft Excel • Python ",
-      desc: "Analyzed and cleaned a Netflix shows and movives dataset using the Naives Bayves model to uncover patterns in genre, country of origin and ratings with a accuracy of 99.97%. Found movies dominate over TV shows; dramas, comedies and documentaries are most common; US, India and UK lead in production.",
+      desc: "Analyzed and cleaned nearly 9000 Netflix shows and movives using the Naives Bayves model to uncover patterns in genre, country of origin and ratings with a accuracy of 99.97%. Tested decision tree, logistic regression models as well, but they did worse than Naive Bayes.Found movies dominate over TV shows; dramas, comedies and documentaries are most common; US, India and UK lead in production.",
       link: "#",
       img: "/proj-netflix.jpg",
     },
