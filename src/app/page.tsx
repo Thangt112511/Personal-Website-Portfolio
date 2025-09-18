@@ -5,7 +5,7 @@ export default function Home() {
     {
       title: "Sales & Profits Analytics Dashboard",
       tech: "Python • Excel • Power BI",
-      desc: "Developed to explore sales, costs and profits across cities, products, managers and purchase types.Includes dynamic filters, map visuals, KPI cards and interactable elements so that stake holders can understand the data, uncover trends and quikly identify profit drivers",
+      desc: "Developed to explore sales, costs and profits across cities, products, managers and purchase types.Includes dynamic filters, map visuals, KPI cards and interactable elements so that stake holders can understand the data, uncover trends and quikly identify profit drivers. Cleaned and prepared raw excel data and used DAX measures to calculate interactive KPIs. This dashboard would essentially allow restaurant managers to monitor real-time performance across different locations, track profitability trends and identify which products were high performing",
       pbix: "/sales Dashboard.pbix", // add a custom field for pbix 
       pdf: "/Sales Dashboard.pdf",
       img: "/proj-sales.jpg",
@@ -13,14 +13,14 @@ export default function Home() {
 {
       title: "Automobile Performance Report",
       tech: "Tableau • Excel",
-      desc: "Created two connected dashboards that allow users to track fuel efficiency, horsepower, and brand popularity over time. Drill-down options include origin, cylinders, and model year, as well as dynamic filters, scatterplots, and bar charts. Provides a comprehensive image of how different regions and brands compared in terms of MPG, horsepower, and number of models between the 1970s and 1980s. (click me!)",
+      desc: "Created two connected dashboards that allow users to track fuel efficiency, horsepower, and brand popularity over time. Drill-down options include origin, cylinders, and model year, as well as dynamic filters, scatterplots, and bar charts. Provides a comprehensive image of how different regions and brands compared in terms of MPG, horsepower, and number of models between the 1970s and 1980s. Shows sale trends, brand breakdowns and model pricing insights alongside using filters to get the cleanest data. (click me!)",
       link: "https://public.tableau.com/app/profile/thang.tran3889/viz/Autombileproject/Branddash",
       img: "/proj-automobile.jpg",
     },
     {
       title: "Employee Recognition & Rewards System",
       tech: "Microsoft Slides • Microsoft Excel • Lucidchart • Python",
-      desc: "Designed and documented a Slack-integrated Employee Recognition & Rewards System (ERRS) to improve morale, engagement and retention. (click me!)",
+      desc: "Designed and documented a Slack-integrated Employee Recognition & Rewards System (ERRS) to improve morale, engagement and retention. Prepared a full report documentation that includes Gantt and PERT analysis and a break even analysis. Includes user requirements, project scope, communication plans, and project feasibility. Developed data flow diagrams that ex plores all processess to the system. (click me!)",
       link: "ERRS final report.docx.pdf",
       img: "/proj-errs.jpg",
     },
@@ -148,71 +148,75 @@ export default function Home() {
         </p>
 
      <div className="mt-8 grid gap-8 md:grid-cols-2">
-  {projects.map((p) => {
-    const clickable = p.link && p.link !== "#";
-const CardContent = (
-  <article
-    className="relative z-10 rounded-xl bg-white p-6 text-gray-900 shadow hover:shadow-xl transition-transform duration-200 hover:-translate-y-1"
-  >
-    <h3 className="text-xl font-semibold">{p.title}</h3>
-    <p className="mt-1 text-sm text-gray-500">{p.tech}</p>
+{projects.map((p) => {
+  const clickable = p.link && p.link !== "#";
 
-    {p.img && (
-      <Image
-        src={p.img}
-        alt={`${p.title} screenshot`}
-        width={640}
-        height={360}
-        className="mt-3 rounded-lg border border-gray-100"
-      />
-    )}
+  const CardContent = (
+    <article
+      className={`relative z-10 rounded-xl bg-white p-6 text-gray-900 shadow
+      hover:shadow-xl transition-transform duration-200 hover:-translate-y-1 ${
+        p.title === "Sales & Profit Analytics Dashboard" ? "min-h-[800px]" : ""
+      }`}
+    >
+      <h3 className="text-xl font-semibold">{p.title}</h3>
+      <p className="mt-1 text-sm text-gray-500">{p.tech}</p>
 
-    <p className="mt-3 text-gray-700">{p.desc}</p>
-
-    <div className="mt-4 flex flex-wrap gap-3">
-      {p.pbix && (
-        <a
-          href={p.pbix}
-          className="rounded bg-black px-3 py-1.5 text-white text-sm hover:opacity-90"
-          download
-        >
-          Interactive (PBIX)
-        </a>
+      {p.img && (
+        <Image
+          src={p.img}
+          alt={`${p.title} screenshot`}
+          width={640}
+          height={360}
+          className="mt-3 rounded-lg border border-gray-100"
+        />
       )}
-      {p.pdf && (
-        <a
-          href={p.pdf}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="rounded border border-black px-3 py-1.5 text-sm hover:bg-black hover:text-white"
-        >
-          Non-Interactive (PDF)
-        </a>
-      )}
-    </div>
-  </article>
-    );
 
-    return (
-      <div key={p.title} className="relative">
-        {/* the offset gray box */}
-         <div className="absolute left-2 bottom-2 h-full w-full rounded-xl bg-gray-300"></div>
-        {/* the clickable card */}
-        {clickable ? (
+      <p className="mt-3 text-gray-700">{p.desc}</p>
+
+      <div className="mt-4 flex flex-wrap gap-3">
+        {p.pbix && (
           <a
-            href={p.link}
+            href={p.pbix}
+            className="rounded bg-black px-3 py-1.5 text-white text-sm hover:opacity-90"
+            download
+          >
+            Interactive (PBIX)
+          </a>
+        )}
+        {p.pdf && (
+          <a
+            href={p.pdf}
             target="_blank"
             rel="noopener noreferrer"
-            className="block focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-xl"
+            className="rounded border border-black px-3 py-1.5 text-sm hover:bg-black hover:text-white"
           >
-            {CardContent}
+            Non-Interactive (PDF)
           </a>
-        ) : (
-          CardContent
         )}
       </div>
-    );
-  })}
+    </article>
+  );
+
+  return (
+    <div key={p.title} className="relative">
+      {/* gray offset that always matches the card height */}
+      <div className="pointer-events-none absolute inset-0 translate-x-[-0.5rem] translate-y-[0.5rem] rounded-xl bg-gray-200" />
+      {clickable ? (
+        <a
+          href={p.link!}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block"
+        >
+          {CardContent}
+        </a>
+      ) : (
+        CardContent
+      )}
+    </div>
+  );
+})}
+
 </div>
 <section id="experience" className="mx-auto max-w-6xl px-6 py-16">
   <h2 className="text-3xl font-semibold">Experience</h2>
