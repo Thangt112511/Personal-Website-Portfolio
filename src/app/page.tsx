@@ -289,7 +289,7 @@ const CardContent = (
     href="mailto:thangt112511@gmail.com"
     className="rounded bg-white px-5 py-2.5 text-black hover:bg-gray-200"
   >
-    Email Me
+    Email Me: thangt112511@gmail.com
   </a>
   <a
     href="https://www.linkedin.com/in/thang-tran-0648491b5/"
