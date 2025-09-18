@@ -52,8 +52,9 @@ export default function Home() {
       period: "May 2022 – Jun 2022",
       location: "Randolph, MA",
       bullets: [
-        "Performed precision assembly and QA checks on 100+ aviator eyewear units, ensuring compliance with manufacturing standards. ",
-        "Implemented improvements to shipping workflow, reducing errors in rates in product deliveries"
+        "Performed precision assembly and QA checks on 100+ aviator eyewear units daily, ensuring compliance with manufacturing standards. ",
+        "Implemented improvements to shipping workflow, reducing errors in rates in product deliveries",
+	"Learned alot about company manufacturing processes in how aviators were produced, how their materials were acquired and cost of production"
       ],
       logo: "/randolph.jpg",
       link: "https://www.randolphusa.com/?srsltid=AfmBOoqb3mv_l_qhSavZZiozCguZAclYZfdDcRiuK76tjyIXimcdZV1B",
