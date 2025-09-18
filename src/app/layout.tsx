@@ -13,8 +13,29 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Thang Tran",
-  description: "Portfolio of Thang Tran",
+  title: "Thang Tran | Business Data Analyst",
+  description: "Portfolio and projects of Thang Tran, Business Data Analyst.",
+  openGraph: {
+    title: "Thang Tran | Business Data Analyst",
+    description: "Portfolio and projects of Thang Tran, Business Data Analyst.",
+    url: "https://dubiousmangolover34.vercel.app/", // your live URL
+    siteName: "Thang Tran Portfolio",
+    images: [
+      {
+        url: "/front.jpg", // put your preview image in /public/og-image.jpg
+        width: 1200,
+        height: 630,
+        alt: "Thang Tran Portfolio",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Thang Tran | Business Data Analyst",
+    description: "Portfolio and projects of Thang Tran, Business Data Analyst.",
+    images: ["/front.jpg"],
+  },
 };
 
 export default function RootLayout({
