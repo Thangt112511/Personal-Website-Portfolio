@@ -31,6 +31,13 @@ export default function Home() {
       link: "#",
       img: "/proj-netflix.jpg",
     },
+{
+      title: "Healthcare Insurance Cost Analysis",
+      tech: "Pandas • Microsoft Excel • Python • Streamlit • GitHub • Plotly ",
+      desc: "Built a interactive data dashboard to explore how traits influence healthcare insurance charges. Performed data cleaning and exploratory data analysis on real world insurance data using Pandas and Seaborn/Plotly. Implemented multiple filters for users to inreactively explore the data with a streamlit sidebar. Deployed using Streamlit cloud and github for public access",
+      link: "https://thangtranhealthdashboard.streamlit.app/",
+      img: "/proj-healthcare.jpg",
+    },
   ];
  const experience = [
     {
