@@ -5,7 +5,7 @@ export default function Home() {
     {
       title: "Sales & Profits Analytics Dashboard",
       tech: "Python • Excel • Power BI",
-      desc: "Developed to explore sales, costs and profits across cities, products, managers and purchase types.Includes dynamic filters, map visuals, KPI cards and interactable elements so that stake holders can understand the data, uncover trends and quikly identify profit drivers. Cleaned and prepared raw excel data and used DAX measures to calculate interactive KPIs. This dashboard would essentially allow restaurant managers to monitor real-time performance across different locations, track profitability trends and identify which products were high performing",
+      desc: "Developed to explore sales, costs and profits across cities, products, managers and purchase types.Includes dynamic filters, map visuals, KPI cards and interactable elements so that stake holders can understand the data, uncover trends and quickly identify profit drivers. Cleaned and prepared raw excel data and used DAX measures to calculate interactive KPIs. This dashboard would essentially allow restaurant managers to monitor real-time performance across different locations, track profitability trends and identify which products were high performing",
       pbix: "/Sales Dashboard.pbix", // add a custom field for pbix 
       pdf: "/Sales Dashboard.pdf",
       img: "/proj-sales.jpg",
@@ -13,7 +13,7 @@ export default function Home() {
 {
       title: "Holiday Impact on Retail Sales",
       tech: "Python • Excel • Power BI • SQL",
-      desc: "Authored an end to end retail analytics pipline with SQL Server, staged CSV via bulk insert and modeled a star scheme, loaded 6k+ rows with robuts, type safe SQL in order to designed and deliver a clean interactive Power BI model with multiple pages showing analytics on real world data such as growth rate, total sales over time.",
+      desc: "Enabled managers to monitor $21.7B saleas data across 45 stores, improving visibility into profitiability trends for holiday season. Authored an end to end retail analytics pipeline with SQL Server, Processed and transformed 6,000+ rows with SQL bulk inserts and star schema modeling, type safe SQL in order to designed and deliver a clean interactive Power BI model with multiple pages showing analytics on real world data such as growth rate, total sales over time.",
       pbix: "/Walmart Project.pbit", // add a custom field for pbix 
       pdf: "/Walmart Project.pdf",
       img: "/proj-walmart.jpg",
@@ -35,7 +35,7 @@ export default function Home() {
       {
       title: "Netflix Data Mining Workflows Project",
       tech: "Rapidminer • Microsoft Excel • Python ",
-      desc: "Analyzed and cleaned nearly 9000 Netflix shows and movives using the Naives Bayves model to uncover patterns in genre, country of origin and ratings with a accuracy of 99.97%. Tested decision tree, logistic regression models as well, but they did worse than Naive Bayes.Found movies dominate over TV shows; dramas, comedies and documentaries are most common; US, India and UK lead in production.",
+      desc: "Analyzed and cleaned nearly 9000 Netflix shows and movives using the Naives Bayes model to uncover patterns in genre, country of origin and ratings with a accuracy of 99.97%. Tested decision tree, logistic regression models as well, but they did worse than Naive Bayes.Found movies dominate over TV shows; dramas, comedies and documentaries are most common; US, India and UK lead in production.",
       link: "#",
       img: "/proj-netflix.jpg",
     },
