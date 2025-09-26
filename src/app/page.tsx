@@ -87,7 +87,7 @@ export default function Home() {
 <a href="#experience" className="hover:opacity-80">Experience</a>
             <a href="#contact" className="hover:opacity-80">Contact</a>
             <a
-               href="/resume.pdf"
+               href="/Resume.pdf"
   target="_blank"
   rel="noopener noreferrer"
   className="rounded border border-white/30 px-3 py-1.5 hover:bg-white hover:text-black"
@@ -126,7 +126,7 @@ export default function Home() {
           <div className="mt-6 flex flex-wrap gap-3">
           
            <a
-  href="/resume.pdf"
+  href="/Resume.pdf"
   target="_blank"
   rel="noopener noreferrer"
   className="rounded border border-white/30 px-4 py-2 hover:bg-white hover:text-black"
