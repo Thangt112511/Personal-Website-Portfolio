@@ -6,9 +6,17 @@ export default function Home() {
       title: "Sales & Profits Analytics Dashboard",
       tech: "Python • Excel • Power BI",
       desc: "Developed to explore sales, costs and profits across cities, products, managers and purchase types.Includes dynamic filters, map visuals, KPI cards and interactable elements so that stake holders can understand the data, uncover trends and quikly identify profit drivers. Cleaned and prepared raw excel data and used DAX measures to calculate interactive KPIs. This dashboard would essentially allow restaurant managers to monitor real-time performance across different locations, track profitability trends and identify which products were high performing",
-      pbix: "/sales Dashboard.pbix", // add a custom field for pbix 
+      pbix: "/Sales Dashboard.pbix", // add a custom field for pbix 
       pdf: "/Sales Dashboard.pdf",
       img: "/proj-sales.jpg",
+    },
+{
+      title: "Holiday Impact on Retail Sales",
+      tech: "Python • Excel • Power BI • SQL",
+      desc: "Authored an end to end retail analytics pipline with SQL Server, staged CSV via bulk insert and modeled a star scheme, loaded 6k+ rows with robuts, type safe SQL in order to designed and deliver a clean interactive Power BI model with multiple pages showing analytics on real world data such as growth rate, total sales over time",
+      pbit: "/Walmart Project.pbit", // add a custom field for pbix 
+      pdf: "/Walmart Project.pdf",
+      img: "/proj-walmart.jpg",
     },
 {
       title: "Automobile Performance Report",
@@ -34,7 +42,7 @@ export default function Home() {
 {
       title: "Healthcare Insurance Cost Analysis",
       tech: "Pandas • Microsoft Excel • Python • Streamlit • GitHub • Plotly ",
-      desc: "Built a interactive data dashboard to explore how traits influence healthcare insurance charges. Performed data cleaning and exploratory data analysis on real world insurance data using Pandas and Seaborn/Plotly. Implemented multiple filters for users to inreactively explore the data with a streamlit sidebar. Deployed using Streamlit cloud and github for public access (click me!)",
+      desc: "Built a interactive data dashboard to explore how traits influence healthcare insurance charges. Performed data cleaning and exploratory data analysis on real world insurance data using Pandas and Seaborn/Plotly. Implemented multiple filters for users to inreactively explore the data with a streamlit sidebar. Deployed using Streamlit cloud and github for public access",
       link: "https://thangtranhealthdashboard.streamlit.app/",
       img: "/proj-healthcare.jpg",
     },
