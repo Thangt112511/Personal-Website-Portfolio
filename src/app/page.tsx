@@ -13,8 +13,8 @@ export default function Home() {
 {
       title: "Holiday Impact on Retail Sales",
       tech: "Python • Excel • Power BI • SQL",
-      desc: "Authored an end to end retail analytics pipline with SQL Server, staged CSV via bulk insert and modeled a star scheme, loaded 6k+ rows with robuts, type safe SQL in order to designed and deliver a clean interactive Power BI model with multiple pages showing analytics on real world data such as growth rate, total sales over time",
-      pbit: "/Walmart Project.pbit", // add a custom field for pbix 
+      desc: "Authored an end to end retail analytics pipline with SQL Server, staged CSV via bulk insert and modeled a star scheme, loaded 6k+ rows with robuts, type safe SQL in order to designed and deliver a clean interactive Power BI model with multiple pages showing analytics on real world data such as growth rate, total sales over time.",
+      pbix: "/Walmart Project.pbit", // add a custom field for pbix 
       pdf: "/Walmart Project.pdf",
       img: "/proj-walmart.jpg",
     },
@@ -42,7 +42,7 @@ export default function Home() {
 {
       title: "Healthcare Insurance Cost Analysis",
       tech: "Pandas • Microsoft Excel • Python • Streamlit • GitHub • Plotly ",
-      desc: "Built a interactive data dashboard to explore how traits influence healthcare insurance charges. Performed data cleaning and exploratory data analysis on real world insurance data using Pandas and Seaborn/Plotly. Implemented multiple filters for users to inreactively explore the data with a streamlit sidebar. Deployed using Streamlit cloud and github for public access",
+      desc: "Built a interactive data dashboard to explore how traits influence healthcare insurance charges. Performed data cleaning and exploratory data analysis on real world insurance data using Pandas and Seaborn/Plotly. Implemented multiple filters for users to inreactively explore the data with a streamlit sidebar. Deployed using Streamlit cloud and github for public access. (Click me!)",
       link: "https://thangtranhealthdashboard.streamlit.app/",
       img: "/proj-healthcare.jpg",
     },
@@ -163,16 +163,14 @@ export default function Home() {
           Selected work with outcomes. Ask for code samples or deep-dive writeups.
         </p>
 
-     <div className="mt-8 grid gap-8 md:grid-cols-2">
+     <div className="mt-8 grid gap-8 md:grid-cols-2 items-stretch">
 {projects.map((p) => {
   const clickable = p.link && p.link !== "#";
 
   const CardContent = (
     <article
-      className={`relative z-10 rounded-xl bg-white p-6 text-gray-900 shadow
-      hover:shadow-xl transition-transform duration-200 hover:-translate-y-1 ${
-        p.title === "Sales & Profit Analytics Dashboard" ? "min-h-[800px]" : ""
-      }`}
+      className="relative z-10 h-full flex flex-col rounded-xl bg-white p-6 text-gray-900 shadow 
+  hover:shadow-xl transition-transform duration-200 hover:-translate-y-1"
     >
       <h3 className="text-xl font-semibold">{p.title}</h3>
       <p className="mt-1 text-sm text-gray-500">{p.tech}</p>
@@ -214,7 +212,7 @@ export default function Home() {
   );
 
   return (
-    <div key={p.title} className="relative">
+    <div key={p.title} className="relative flex">
       {/* gray offset that always matches the card height */}
       <div className="pointer-events-none absolute inset-0 translate-x-[-0.5rem] translate-y-[0.5rem] rounded-xl bg-gray-200" />
       {clickable ? (
