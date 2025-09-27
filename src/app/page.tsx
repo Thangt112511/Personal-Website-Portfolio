@@ -13,7 +13,7 @@ export default function Home() {
 {
       title: "Holiday Impact on Retail Sales",
       tech: "Python • Excel • Power BI • SQL",
-      desc: "Enabled managers to monitor $21.7B saleas data across 45 stores, improving visibility into profitiability trends for holiday season. Authored an end to end retail analytics pipeline with SQL Server, Processed and transformed 6,000+ rows with SQL bulk inserts and star schema modeling, type safe SQL in order to designed and deliver a clean interactive Power BI model with multiple pages showing analytics on real world data such as growth rate, total sales over time.",
+      desc: "Enabled managers to monitor $21.7B sales as data across 45 stores, improving visibility into profitiability trends for holiday season. Authored an end to end retail analytics pipeline with SQL Server, Processed and transformed 6,000+ rows with SQL bulk inserts and star schema modeling, type safe SQL in order to designed and deliver a clean interactive Power BI model with multiple pages showing analytics on real world data such as growth rate, total sales over time.",
       pbix: "/Walmart Project.pbit", // add a custom field for pbix 
       pdf: "/Walmart Project.pdf",
       img: "/proj-walmart.jpg",
