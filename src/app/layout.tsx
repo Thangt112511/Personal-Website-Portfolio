@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Analytics } from "@vercel/analytics/next";
+import { Analytics, type BeforeSendEvent } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,11 +19,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Thang Tran | Business Data Analyst",
     description: "Portfolio and projects of Thang Tran, Business Data Analyst.",
-    url: "https://dubiousmangolover34.vercel.app/", // your live URL
+    url: "https://dubiousmangolover34.vercel.app/", 
     siteName: "Thang Tran Portfolio",
     images: [
       {
-        url: "/front.jpg", // put your preview image in /public/og-image.jpg
+        url: "/front.jpg", 
         width: 1200,
         height: 630,
         alt: "Thang Tran Portfolio",
@@ -50,7 +50,14 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
-	<Analytics />
+	<Analytics
+	    beforeSend={(event: BeforeSendEvent) => {
+            if (typeof window !== "undefined" && localStorage.getItem("va-ignore") === "1") {
+              return null; 
+            }
+            return event;  
+          }}
+	 />
       </body>
     </html>
   );
