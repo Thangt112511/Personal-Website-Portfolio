@@ -1,7 +1,6 @@
 "use client";  
 
 import { Analytics } from "@vercel/analytics/next";
-import type { BeforeSendEvent } from "@vercel/analytics/types";
 
 export default function MyAnalytics() {
   return (
