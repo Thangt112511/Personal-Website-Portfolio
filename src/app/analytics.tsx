@@ -1,15 +1,15 @@
-"use client";  
+"use client";
 
 import { Analytics } from "@vercel/analytics/next";
 
 export default function MyAnalytics() {
   return (
     <Analytics
-      beforeSend={(event: BeforeSendEvent) => {
+      beforeSend={(event) => {
         if (typeof window !== "undefined" && localStorage.getItem("va-ignore") === "1") {
-          return null; // drop hit
+          return null; 
         }
-        return event;
+        return event; 
       }}
     />
   );
