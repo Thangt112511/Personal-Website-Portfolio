@@ -48,10 +48,7 @@ export default function RootLayout({children,}: Readonly<{
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
-	<Analytics }
-            return event;  
-          }}
-	 />
+	<Analytics/>
       </body>
     </html>
   );
