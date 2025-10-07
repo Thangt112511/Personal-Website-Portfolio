@@ -142,9 +142,10 @@ export default function Home() {
             <h2 className="text-2xl font-semibold">About Me</h2>
             <p className="mt-3 leading-relaxed text-gray-700">
              	Welcome to my website! I’m Thang Tran, a UMass Lowell graduate with a degree in management information system.
-                I am passionate about turning complex data into clear, actionable insights and making web pages. Through my co-op at 
+                I am a data driven problem solver and my work turns complex data into clear, actionable insights and story-driven dashboards. Through my co-op at 
 		Lightforce Orthodontics and multiple analytics projects, I’ve gained hands-on 
-		experience with SQL, Python, Power BI and Tableau. I hope we can meet soon!
+		experience with SQL, Python, Power BI and Tableau. I love learning! If you have any suggestions for my site please let me know!
+		I hope we can meet soon!
             </p>
             <a
               href="#contact"
