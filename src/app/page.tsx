@@ -3,21 +3,34 @@
 import Image from "next/image";
 import ProjectsSection from "./components/projects";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Reveal from "./components/Reveal";
 
-export default function Home() {
-  const searchParams = useSearchParams();
-  const sent = searchParams.get("sent") === "1";
-  const [showPopup, setShowPopup] = useState(sent);
+/** Popup that reads ?sent=1 from the URL via useSearchParams.
+ * Wrapped in <Suspense> in the page to satisfy Next.js requirement.
+ */
+function SentPopup() {
+  const sp = useSearchParams();
+  const sent = sp.get("sent") === "1";
+  const [show, setShow] = useState(sent);
 
   useEffect(() => {
     if (sent) {
-      const timer = setTimeout(() => setShowPopup(false), 4000);
-      return () => clearTimeout(timer);
+      const t = setTimeout(() => setShow(false), 4000);
+      return () => clearTimeout(t);
     }
   }, [sent]);
 
+  if (!show) return null;
+
+  return (
+    <div className="fixed top-20 left-1/2 -translate-x-1/2 z-50 rounded-lg bg-green-600 text-white px-6 py-3 shadow-lg animate-bounce">
+      :) Message Sent Successfully!
+    </div>
+  );
+}
+
+export default function Home() {
   const projects = [
     {
       title: "Census Data Analytics Pipeline - U.S Education & Income Trends",
@@ -261,11 +274,10 @@ Simulates a real-world analysis product for business or healthcare stakeholders`
 
   return (
     <div className="min-h-screen bg-black text-white">
-      {showPopup && (
-        <div className="fixed top-20 left-1/2 -translate-x-1/2 z-50 rounded-lg bg-green-600 text-white px-6 py-3 shadow-lg animate-bounce">
-          :) Message Sent Successfully!
-        </div>
-      )}
+      {/* Suspense-wrapped popup that uses useSearchParams */}
+      <Suspense fallback={null}>
+        <SentPopup />
+      </Suspense>
 
       <header className="sticky top-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur">
         <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
@@ -345,7 +357,7 @@ Simulates a real-world analysis product for business or healthcare stakeholders`
           </Reveal>
         </div>
 
-
+        {/* right side: about card */}
         <Reveal delay={0.15}>
           <div className="flex items-center justify-center">
             <div className="max-w-md rounded-xl bg-white p-6 text-gray-900 shadow-md">
@@ -374,7 +386,6 @@ Simulates a real-world analysis product for business or healthcare stakeholders`
       <Reveal>
         <ProjectsSection projects={projects} />
       </Reveal>
-
 
       <section id="experience" className="mx-auto max-w-6xl px-6 py-16">
         <h2 className="text-3xl font-semibold">Experience</h2>
@@ -461,90 +472,89 @@ Simulates a real-world analysis product for business or healthcare stakeholders`
         </div>
       </section>
 
-     {/* CONTACT */}
-<section id="contact" className="mx-auto max-w-6xl px-6 py-16">
-  {/* section title + intro */}
-  <Reveal>
-    <h2 className="text-3xl font-semibold">Contact</h2>
-  </Reveal>
-  <Reveal delay={0.06}>
-    <p className="mt-3 max-w-prose text-white/80">
-      Want to talk about an opportunity or a project? Reach out! I’m based in the Greater Boston area and open to roles.
-    </p>
-  </Reveal>
+      {/* CONTACT */}
+      <section id="contact" className="mx-auto max-w-6xl px-6 py-16">
+        {/* section title + intro */}
+        <Reveal>
+          <h2 className="text-3xl font-semibold">Contact</h2>
+        </Reveal>
+        <Reveal delay={0.06}>
+          <p className="mt-3 max-w-prose text-white/80">
+            Want to talk about an opportunity or a project? Reach out! I’m based in the Greater Boston area and open to roles.
+          </p>
+        </Reveal>
 
-  <div className="mt-8 grid gap-8 md:grid-cols-2">
-    {/* left column: buttons (staggered) */}
-    <div>
-      <Reveal delay={0.12}>
-        <div className="flex flex-wrap gap-3">
-          <a
-            href="mailto:thangt112511@gmail.com"
-            className="rounded bg-white px-5 py-2.5 text-black hover:bg-gray-200"
-          >
-            Email Me: thangt112511@gmail.com
-          </a>
-          <a
-            href="https://www.linkedin.com/in/thang-tran-0648491b5/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded border border-white/30 px-5 py-2.5 hover:bg-white hover:text-black"
-          >
-            LinkedIn
-          </a>
-          <a
-            href="https://github.com/Thangt112511"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded border border-white/30 px-5 py-2.5 hover:bg-white hover:text-black"
-          >
-            GitHub
-          </a>
+        <div className="mt-8 grid gap-8 md:grid-cols-2">
+          {/* left column: buttons (staggered) */}
+          <div>
+            <Reveal delay={0.12}>
+              <div className="flex flex-wrap gap-3">
+                <a
+                  href="mailto:thangt112511@gmail.com"
+                  className="rounded bg-white px-5 py-2.5 text-black hover:bg-gray-200"
+                >
+                  Email Me: thangt112511@gmail.com
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/thang-tran-0648491b5/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded border border-white/30 px-5 py-2.5 hover:bg-white hover:text-black"
+                >
+                  LinkedIn
+                </a>
+                <a
+                  href="https://github.com/Thangt112511"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded border border-white/30 px-5 py-2.5 hover:bg-white hover:text-black"
+                >
+                  GitHub
+                </a>
+              </div>
+            </Reveal>
+          </div>
+
+          {/* right column: form */}
+          <Reveal delay={0.18}>
+            <form
+              className="rounded-xl bg-white p-6 text-gray-900 shadow-md"
+              action="/api/contact"
+              method="POST"
+            >
+              <h3 className="text-xl font-semibold">Send a Message</h3>
+              <input
+                className="mt-4 w-full rounded border border-gray-300 p-3"
+                name="name"
+                placeholder="Your name"
+                required
+              />
+              <input
+                className="mt-3 w-full rounded border border-gray-300 p-3"
+                type="email"
+                name="email"
+                placeholder="Your email"
+                required
+              />
+              <textarea
+                className="mt-3 w-full rounded border border-gray-300 p-3"
+                name="message"
+                placeholder="Your message"
+                rows={5}
+                required
+              />
+              {/* honeypot stays */}
+              <input type="text" name="company" className="hidden" tabIndex={-1} autoComplete="off" />
+              <button
+                type="submit"
+                className="mt-4 w-full rounded bg-black px-4 py-2 text-white hover:opacity-90"
+              >
+                Send
+              </button>
+            </form>
+          </Reveal>
         </div>
-      </Reveal>
-    </div>
-
-    {/* right column: form */}
-    <Reveal delay={0.18}>
-      <form
-        className="rounded-xl bg-white p-6 text-gray-900 shadow-md"
-        action="/api/contact"
-        method="POST"
-      >
-        <h3 className="text-xl font-semibold">Send a Message</h3>
-        <input
-          className="mt-4 w-full rounded border border-gray-300 p-3"
-          name="name"
-          placeholder="Your name"
-          required
-        />
-        <input
-          className="mt-3 w-full rounded border border-gray-300 p-3"
-          type="email"
-          name="email"
-          placeholder="Your email"
-          required
-        />
-        <textarea
-          className="mt-3 w-full rounded border border-gray-300 p-3"
-          name="message"
-          placeholder="Your message"
-          rows={5}
-          required
-        />
-        {/* honeypot stays */}
-        <input type="text" name="company" className="hidden" tabIndex={-1} autoComplete="off" />
-        <button
-          type="submit"
-          className="mt-4 w-full rounded bg-black px-4 py-2 text-white hover:opacity-90"
-        >
-          Send
-        </button>
-      </form>
-    </Reveal>
-  </div>
-</section>
-
+      </section>
 
       {/* footer */}
       <footer className="border-t border-white/10">
@@ -555,3 +565,4 @@ Simulates a real-world analysis product for business or healthcare stakeholders`
     </div>
   );
 }
+
