@@ -1,12 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import Reveal from "./Reveal";
 
 export type Project = {
   title: string;
-  desc: string;         
-  readme?: string;       
+  desc: string;
+  readme?: string;
   img: string;
   pbix?: string;
   pdf?: string;
@@ -20,6 +21,41 @@ export default function ProjectsSection({ projects }: { projects: Project[] }) {
   const [activeTags, setActiveTags] = useState<string[]>([]);
   const [expanded, setExpanded] = useState(false);
   const [selected, setSelected] = useState<Project | null>(null);
+
+  // --- NEW: refs + heights for equalizing cards ---
+  const featuredWrappersRef = useRef<HTMLDivElement[]>([]);
+  const otherWrappersRef = useRef<HTMLDivElement[]>([]);
+  const [featuredMaxH, setFeaturedMaxH] = useState<number>(0);
+  const [otherMaxH, setOtherMaxH] = useState<number>(0);
+
+  // measure tallest in a list of refs
+  const measureMax = (els: (HTMLDivElement | undefined)[]) =>
+    Math.max(0, ...els.map((el) => (el ? el.offsetHeight : 0)));
+
+  useEffect(() => {
+    const doMeasure = () => {
+      setFeaturedMaxH(measureMax(featuredWrappersRef.current));
+      setOtherMaxH(measureMax(otherWrappersRef.current));
+    };
+    // initial
+    doMeasure();
+    // remeasure on resize
+    const onResize = () => requestAnimationFrame(doMeasure);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  // remap after data/filter expands/collapses
+  useEffect(() => {
+    // next tick so DOM has updated
+    const id = requestAnimationFrame(() => {
+      setFeaturedMaxH(measureMax(featuredWrappersRef.current));
+      setOtherMaxH(measureMax(otherWrappersRef.current));
+    });
+    return () => cancelAnimationFrame(id);
+  }, [activeTags, expanded]);
+
+  // -------------------------------------------------
 
   const allTags = useMemo(
     () => Array.from(new Set(projects.flatMap((p) => p.tags ?? []))).sort(),
@@ -37,11 +73,10 @@ export default function ProjectsSection({ projects }: { projects: Project[] }) {
   const clearTags = () => setActiveTags([]);
 
   function renderProjectCard(p: Project) {
-    const CardContent = (
+    return (
       <article className="relative z-10 h-full flex flex-col rounded-xl bg-white p-6 text-gray-900 shadow transition-all duration-200 hover:-translate-y-1 hover:shadow-xl">
         <h3 className="text-xl font-semibold">{p.title}</h3>
 
-      
         {p.tags?.length ? (
           <div className="mt-2 flex flex-wrap gap-2">
             {p.tags.map((t) => (
@@ -66,26 +101,8 @@ export default function ProjectsSection({ projects }: { projects: Project[] }) {
           />
         )}
 
-  
         <p className="mt-3 text-gray-700">{p.desc}</p>
       </article>
-    );
-
-    return (
-      <div
-        key={p.title}
-        onClick={() => setSelected(p)}
-        className="relative flex group cursor-pointer transition-transform duration-200 hover:-translate-y-1"
-        aria-label={`Open details for ${p.title}`}
-        role="button"
-        tabIndex={0}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") setSelected(p);
-        }}
-      >
-        <div className="pointer-events-none absolute inset-0 translate-x-[-0.5rem] translate-y-[0.5rem] rounded-xl bg-gray-200 transition-colors duration-300 group-hover:bg-blue-400" />
-        <div className="relative z-10 w-full">{CardContent}</div>
-      </div>
     );
   }
 
@@ -129,13 +146,41 @@ export default function ProjectsSection({ projects }: { projects: Project[] }) {
       )}
 
       {/* Featured */}
-      <h3 className="mt-10 text-2xl font-semibold">Featured</h3>
-      <div className="mt-4 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-        {featuredProjects.slice(0, 3).map((p) => renderProjectCard(p))}
-        {featuredProjects.length === 0 && (
-          <div className="text-white/60">No featured projects match the current filter.</div>
-        )}
-      </div>
+     <h3 className="mt-10 text-2xl font-semibold">Featured</h3>
+<div className="mt-4 grid gap-8 md:grid-cols-2 xl:grid-cols-3 items-stretch">
+  {featuredProjects.slice(0, 3).map((p, i) => (
+    <div key={p.title} className="flex">
+      <Reveal delay={i * 0.08} className="h-full w-full">
+        {/* clickable wrapper (group enables hover styles) */}
+        <div
+          ref={(el) => (featuredWrappersRef.current[i] = el ?? undefined)}
+          className="relative h-full w-full group cursor-pointer transition-transform duration-200 hover:-translate-y-1"
+          style={featuredMaxH ? { minHeight: featuredMaxH } : undefined}
+          onClick={() => setSelected(p)}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") setSelected(p);
+          }}
+          aria-label={`Open details for ${p.title}`}
+        >
+          {/* offset back piece (turns blue on hover) */}
+          <div className="pointer-events-none absolute inset-0 translate-x-[-0.5rem] translate-y-[0.5rem] rounded-xl bg-gray-200 transition-colors duration-300 group-hover:bg-blue-400" />
+
+          {/* actual card */}
+          <div className="relative z-10 h-full">{renderProjectCard(p)}</div>
+        </div>
+      </Reveal>
+    </div>
+  ))}
+
+  {featuredProjects.length === 0 && (
+    <div className="text-white/60 col-span-full">
+      No featured projects match the current filter.
+    </div>
+  )}
+</div>
+
 
       {/* Toggle */}
       <div className="mt-8 flex justify-center">
@@ -147,7 +192,9 @@ export default function ProjectsSection({ projects }: { projects: Project[] }) {
         >
           {expanded ? "Show fewer projects" : "Show more projects"}
           <svg
-            className={`h-4 w-4 transition-transform duration-200 ${expanded ? "rotate-180" : ""}`}
+            className={`h-4 w-4 transition-transform duration-200 ${
+              expanded ? "rotate-180" : ""
+            }`}
             viewBox="0 0 20 20"
             fill="currentColor"
             aria-hidden="true"
@@ -159,18 +206,39 @@ export default function ProjectsSection({ projects }: { projects: Project[] }) {
 
       {/* Collapsible list */}
       <div
-        id="more-projects"
-        className={`grid gap-8 md:grid-cols-2 xl:grid-cols-3 transition-[grid-template-rows,opacity] ${
-          expanded ? "mt-8 opacity-100" : "pointer-events-none h-0 overflow-hidden opacity-0"
-        }`}
-      >
-        {otherProjects.map((p) => renderProjectCard(p))}
-        {expanded && otherProjects.length === 0 && (
-          <div className="text-white/60">No additional projects match the current filter.</div>
-        )}
-      </div>
+  id="more-projects"
+  className={`grid gap-8 md:grid-cols-2 xl:grid-cols-3 items-stretch transition-[grid-template-rows,opacity] ${
+    expanded ? "mt-8 opacity-100" : "pointer-events-none h-0 overflow-hidden opacity-0"
+  }`}
+>
+  {otherProjects.map((p, i) => (
+    <div key={p.title} className="flex">
+      <Reveal delay={i * 0.08} className="h-full w-full">
+        <div
+          ref={(el) => (otherWrappersRef.current[i] = el ?? undefined)}
+          className="relative h-full w-full group cursor-pointer transition-transform duration-200 hover:-translate-y-1"
+          style={otherMaxH ? { minHeight: otherMaxH } : undefined}
+          onClick={() => setSelected(p)}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") setSelected(p);
+          }}
+          aria-label={`Open details for ${p.title}`}
+        >
+          <div className="pointer-events-none absolute inset-0 translate-x-[-0.5rem] translate-y-[0.5rem] rounded-xl bg-gray-200 transition-colors duration-300 group-hover:bg-blue-400" />
+          <div className="relative z-10 h-full">{renderProjectCard(p)}</div>
+        </div>
+      </Reveal>
+    </div>
+  ))}
+  {expanded && otherProjects.length === 0 && (
+    <div className="text-white/60">No additional projects match the current filter.</div>
+  )}
+</div>
 
-      {/* Modal (render once) */}
+
+      {/* Modal */}
       {selected && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4"
@@ -180,19 +248,18 @@ export default function ProjectsSection({ projects }: { projects: Project[] }) {
             className="relative w-full max-w-3xl rounded-xl bg-white text-gray-900 shadow-lg transition-all duration-300 max-h-[90vh] flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Header (stays visible) */}
+            {/* Header */}
             <div className="p-6 pb-3">
               <button
                 onClick={() => setSelected(null)}
                 className="absolute right-4 top-4 text-gray-400 hover:text-black text-xl"
                 aria-label="Close"
               >
-                x
+                ×
               </button>
 
               <h2 className="text-2xl font-bold pr-8">{selected.title}</h2>
 
-              {/* ⬇️ show tags under the title instead of selected.tech */}
               {selected.tags?.length ? (
                 <div className="mt-2 flex flex-wrap gap-2">
                   {selected.tags.map((t) => (
@@ -207,9 +274,8 @@ export default function ProjectsSection({ projects }: { projects: Project[] }) {
               ) : null}
             </div>
 
-    
+            {/* Scrollable content */}
             <div className="px-6 pb-6 overflow-y-auto max-h-[70vh] pr-2">
-              {/* Hero image */}
               {selected.img && (
                 <div className="mt-2">
                   <Image
@@ -223,12 +289,10 @@ export default function ProjectsSection({ projects }: { projects: Project[] }) {
                 </div>
               )}
 
-           
               <div className="mt-4 leading-relaxed text-gray-800 whitespace-pre-line">
                 {selected.readme ?? selected.desc}
               </div>
 
-            
               {selected.gallery?.length ? (
                 <div className="mt-4 grid grid-cols-2 gap-4">
                   {selected.gallery.map((g, i) => (
@@ -245,7 +309,6 @@ export default function ProjectsSection({ projects }: { projects: Project[] }) {
                 </div>
               ) : null}
 
-        
               <div className="mt-6 flex flex-wrap gap-3">
                 {selected.pbix && (
                   <a
@@ -284,4 +347,3 @@ export default function ProjectsSection({ projects }: { projects: Project[] }) {
     </section>
   );
 }
-
