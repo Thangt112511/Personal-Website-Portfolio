@@ -5,8 +5,8 @@ import { useMemo, useState } from "react";
 
 export type Project = {
   title: string;
-  desc: string;          // shown on the grid card ONLY
-  readme?: string;       // shown in the MODAL ONLY
+  desc: string;         
+  readme?: string;       
   img: string;
   pbix?: string;
   pdf?: string;
@@ -41,7 +41,7 @@ export default function ProjectsSection({ projects }: { projects: Project[] }) {
       <article className="relative z-10 h-full flex flex-col rounded-xl bg-white p-6 text-gray-900 shadow transition-all duration-200 hover:-translate-y-1 hover:shadow-xl">
         <h3 className="text-xl font-semibold">{p.title}</h3>
 
-        {/* ⬇️ show tags instead of the removed p.tech */}
+      
         {p.tags?.length ? (
           <div className="mt-2 flex flex-wrap gap-2">
             {p.tags.map((t) => (
@@ -66,7 +66,7 @@ export default function ProjectsSection({ projects }: { projects: Project[] }) {
           />
         )}
 
-        {/* Grid uses ONLY the short description */}
+  
         <p className="mt-3 text-gray-700">{p.desc}</p>
       </article>
     );
@@ -83,7 +83,6 @@ export default function ProjectsSection({ projects }: { projects: Project[] }) {
           if (e.key === "Enter" || e.key === " ") setSelected(p);
         }}
       >
-        {/* gray offset box that turns blue on hover */}
         <div className="pointer-events-none absolute inset-0 translate-x-[-0.5rem] translate-y-[0.5rem] rounded-xl bg-gray-200 transition-colors duration-300 group-hover:bg-blue-400" />
         <div className="relative z-10 w-full">{CardContent}</div>
       </div>
@@ -171,7 +170,7 @@ export default function ProjectsSection({ projects }: { projects: Project[] }) {
         )}
       </div>
 
-      {/* === Modal (render once) === */}
+      {/* Modal (render once) */}
       {selected && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4"
@@ -188,7 +187,7 @@ export default function ProjectsSection({ projects }: { projects: Project[] }) {
                 className="absolute right-4 top-4 text-gray-400 hover:text-black text-xl"
                 aria-label="Close"
               >
-                ×
+                x
               </button>
 
               <h2 className="text-2xl font-bold pr-8">{selected.title}</h2>
@@ -208,7 +207,7 @@ export default function ProjectsSection({ projects }: { projects: Project[] }) {
               ) : null}
             </div>
 
-            {/* Scrollable content area */}
+    
             <div className="px-6 pb-6 overflow-y-auto max-h-[70vh] pr-2">
               {/* Hero image */}
               {selected.img && (
@@ -224,12 +223,12 @@ export default function ProjectsSection({ projects }: { projects: Project[] }) {
                 </div>
               )}
 
-              {/* README or desc */}
+           
               <div className="mt-4 leading-relaxed text-gray-800 whitespace-pre-line">
                 {selected.readme ?? selected.desc}
               </div>
 
-              {/* Gallery */}
+            
               {selected.gallery?.length ? (
                 <div className="mt-4 grid grid-cols-2 gap-4">
                   {selected.gallery.map((g, i) => (
@@ -246,7 +245,7 @@ export default function ProjectsSection({ projects }: { projects: Project[] }) {
                 </div>
               ) : null}
 
-              {/* Links */}
+        
               <div className="mt-6 flex flex-wrap gap-3">
                 {selected.pbix && (
                   <a

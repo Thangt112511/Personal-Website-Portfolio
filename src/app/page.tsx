@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image";
 import ProjectsSection from "./components/projects";
 
@@ -428,43 +430,21 @@ Simulates a real-world analysis product for business or healthcare stakeholders`
   </a>
 </div>
           </div>
-
-          {/* simple form (replace action with your Formspree/Basin endpoint later) */}
-          <form
-            className="rounded-xl bg-white p-6 text-gray-900 shadow-md"
-            action="https://formspree.io/f/your-endpoint"
-            method="POST"
-          >
-            <h3 className="text-xl font-semibold">Send a Message</h3>
-            <input
-              className="mt-4 w-full rounded border border-gray-300 p-3"
-              name="name"
-              placeholder="Your name"
-              required
-            />
-            <input
-              className="mt-3 w-full rounded border border-gray-300 p-3"
-              type="email"
-              name="email"
-              placeholder="Your email"
-              required
-            />
-            <textarea
-              className="mt-3 w-full rounded border border-gray-300 p-3"
-              name="message"
-              placeholder="Your message"
-              rows={5}
-              required
-            />
-            {/* honeypot to reduce spam (hidden field) */}
-            <input type="text" name="company" className="hidden" tabIndex={-1} autoComplete="off" />
-            <button
-              type="submit"
-              className="mt-4 w-full rounded bg-black px-4 py-2 text-white hover:opacity-90"
-            >
-              Send
-            </button>
-          </form>
+<form
+  className="rounded-xl bg-white p-6 text-gray-900 shadow-md"
+  action="/api/contact"
+  method="POST"
+>
+  <h3 className="text-xl font-semibold">Send a Message</h3>
+  <input className="mt-4 w-full rounded border border-gray-300 p-3" name="name" placeholder="Your name" required />
+  <input className="mt-3 w-full rounded border border-gray-300 p-3" type="email" name="email" placeholder="Your email" required />
+  <textarea className="mt-3 w-full rounded border border-gray-300 p-3" name="message" placeholder="Your message" rows={5} required />
+  {/* honeypot stays */}
+  <input type="text" name="company" className="hidden" tabIndex={-1} autoComplete="off" />
+  <button type="submit" className="mt-4 w-full rounded bg-black px-4 py-2 text-white hover:opacity-90">
+    Send
+  </button>
+</form>
         </div>
       </section>
 
