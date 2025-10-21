@@ -23,13 +23,13 @@ export default function ProjectsSection({ projects }: { projects: Project[] }) {
   const [selected, setSelected] = useState<Project | null>(null);
 
   // --- NEW: refs + heights for equalizing cards ---
-  const featuredWrappersRef = useRef<HTMLDivElement[]>([]);
-  const otherWrappersRef = useRef<HTMLDivElement[]>([]);
+  const featuredWrappersRef = useRef<(HTMLDivElement | null)[]>([]);
+  const otherWrappersRef = useRef<(HTMLDivElement | null)[]>([]);
   const [featuredMaxH, setFeaturedMaxH] = useState<number>(0);
   const [otherMaxH, setOtherMaxH] = useState<number>(0);
 
   // measure tallest in a list of refs
-  const measureMax = (els: (HTMLDivElement | undefined)[]) =>
+  const measureMax = (els: (HTMLDivElement | null)[]) =>
     Math.max(0, ...els.map((el) => (el ? el.offsetHeight : 0)));
 
   useEffect(() => {
@@ -153,7 +153,7 @@ export default function ProjectsSection({ projects }: { projects: Project[] }) {
       <Reveal delay={i * 0.08} className="h-full w-full">
         {/* clickable wrapper (group enables hover styles) */}
         <div
-          ref={(el) => (featuredWrappersRef.current[i] = el ?? undefined)}
+          ref={(el) => {featuredWrappersRef.current[i] = el;}}
           className="relative h-full w-full group cursor-pointer transition-transform duration-200 hover:-translate-y-1"
           style={featuredMaxH ? { minHeight: featuredMaxH } : undefined}
           onClick={() => setSelected(p)}
@@ -215,7 +215,7 @@ export default function ProjectsSection({ projects }: { projects: Project[] }) {
     <div key={p.title} className="flex">
       <Reveal delay={i * 0.08} className="h-full w-full">
         <div
-          ref={(el) => (otherWrappersRef.current[i] = el ?? undefined)}
+          ref={(el) => {otherWrappersRef.current[i] = el;}}
           className="relative h-full w-full group cursor-pointer transition-transform duration-200 hover:-translate-y-1"
           style={otherMaxH ? { minHeight: otherMaxH } : undefined}
           onClick={() => setSelected(p)}
