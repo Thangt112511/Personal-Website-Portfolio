@@ -13,6 +13,7 @@ export type Project = {
   link?: string;
   tags?: string[];
   featured?: boolean;
+  gallery?: string[];
 };
 
 export default function ProjectsSection({ projects }: { projects: Project[] }) {
@@ -39,7 +40,20 @@ export default function ProjectsSection({ projects }: { projects: Project[] }) {
     const CardContent = (
       <article className="relative z-10 h-full flex flex-col rounded-xl bg-white p-6 text-gray-900 shadow transition-all duration-200 hover:-translate-y-1 hover:shadow-xl">
         <h3 className="text-xl font-semibold">{p.title}</h3>
-        <p className="mt-1 text-sm text-gray-500">{p.tech}</p>
+
+        {/* ⬇️ show tags instead of the removed p.tech */}
+        {p.tags?.length ? (
+          <div className="mt-2 flex flex-wrap gap-2">
+            {p.tags.map((t) => (
+              <span
+                key={t}
+                className="rounded-full border border-gray-300 px-2.5 py-0.5 text-xs text-gray-600"
+              >
+                {t}
+              </span>
+            ))}
+          </div>
+        ) : null}
 
         {p.img && (
           <Image
@@ -54,19 +68,6 @@ export default function ProjectsSection({ projects }: { projects: Project[] }) {
 
         {/* Grid uses ONLY the short description */}
         <p className="mt-3 text-gray-700">{p.desc}</p>
-
-        {p.tags?.length ? (
-          <div className="mt-3 flex flex-wrap gap-2">
-            {p.tags.map((t) => (
-              <span
-                key={t}
-                className="rounded-full border border-gray-300 px-2.5 py-0.5 text-xs text-gray-600"
-              >
-                {t}
-              </span>
-            ))}
-          </div>
-        ) : null}
       </article>
     );
 
@@ -170,105 +171,117 @@ export default function ProjectsSection({ projects }: { projects: Project[] }) {
         )}
       </div>
 
-{/* === Modal (render once) === */}
-{selected && (
-  <div
-    className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4"
-    onClick={() => setSelected(null)}
-  >
-    <div
-      className="relative w-full max-w-3xl rounded-xl bg-white text-gray-900 shadow-lg transition-all duration-300
-                 max-h-[90vh] flex flex-col"              // ⬅️ cap overall height + use column layout
-      onClick={(e) => e.stopPropagation()}
-    >
-      {/* Header (stays visible) */}
-      <div className="p-6 pb-3">
-        <button
+      {/* === Modal (render once) === */}
+      {selected && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4"
           onClick={() => setSelected(null)}
-          className="absolute right-4 top-4 text-gray-400 hover:text-black text-xl"
-          aria-label="Close"
         >
-          ×
-        </button>
+          <div
+            className="relative w-full max-w-3xl rounded-xl bg-white text-gray-900 shadow-lg transition-all duration-300 max-h-[90vh] flex flex-col"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header (stays visible) */}
+            <div className="p-6 pb-3">
+              <button
+                onClick={() => setSelected(null)}
+                className="absolute right-4 top-4 text-gray-400 hover:text-black text-xl"
+                aria-label="Close"
+              >
+                ×
+              </button>
 
-        <h2 className="text-2xl font-bold pr-8">{selected.title}</h2>
-        <p className="mt-2 text-gray-600">{selected.tech}</p>
-      </div>
+              <h2 className="text-2xl font-bold pr-8">{selected.title}</h2>
 
-      {/* Scrollable content area */}
-      <div className="px-6 pb-6 overflow-y-auto max-h-[70vh] pr-2">  {/* ⬅️ wheel/trackpad scrolls here */}
-        {/* Hero image */}
-        {selected.img && (
-          <div className="mt-2">
-            <Image
-              src={selected.img}
-              alt={selected.title}
-              width={800}
-              height={450}
-              className="rounded-lg border"
-              sizes="(max-width: 768px) 100vw, 800px"
-            />
+              {/* ⬇️ show tags under the title instead of selected.tech */}
+              {selected.tags?.length ? (
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {selected.tags.map((t) => (
+                    <span
+                      key={t}
+                      className="rounded-full border border-gray-300 px-2.5 py-0.5 text-xs text-gray-600"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              ) : null}
+            </div>
+
+            {/* Scrollable content area */}
+            <div className="px-6 pb-6 overflow-y-auto max-h-[70vh] pr-2">
+              {/* Hero image */}
+              {selected.img && (
+                <div className="mt-2">
+                  <Image
+                    src={selected.img}
+                    alt={selected.title}
+                    width={800}
+                    height={450}
+                    className="rounded-lg border"
+                    sizes="(max-width: 768px) 100vw, 800px"
+                  />
+                </div>
+              )}
+
+              {/* README or desc */}
+              <div className="mt-4 leading-relaxed text-gray-800 whitespace-pre-line">
+                {selected.readme ?? selected.desc}
+              </div>
+
+              {/* Gallery */}
+              {selected.gallery?.length ? (
+                <div className="mt-4 grid grid-cols-2 gap-4">
+                  {selected.gallery.map((g, i) => (
+                    <Image
+                      key={i}
+                      src={g}
+                      alt=""
+                      width={400}
+                      height={250}
+                      className="rounded-lg border"
+                      sizes="(max-width: 768px) 50vw, 400px"
+                    />
+                  ))}
+                </div>
+              ) : null}
+
+              {/* Links */}
+              <div className="mt-6 flex flex-wrap gap-3">
+                {selected.pbix && (
+                  <a
+                    href={selected.pbix}
+                    className="rounded bg-black px-3 py-1.5 text-white text-sm hover:opacity-90"
+                    download
+                  >
+                    Download PBIX (Interactive)
+                  </a>
+                )}
+                {selected.pdf && (
+                  <a
+                    href={selected.pdf}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded border border-black px-3 py-1.5 text-sm hover:bg-black hover:text-white"
+                  >
+                    View PDF (Non-Interactive)
+                  </a>
+                )}
+                {selected.link && selected.link !== "#" && (
+                  <a
+                    href={selected.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded border border-gray-300 px-3 py-1.5 text-sm hover:bg-gray-100"
+                  >
+                    Open Live Project
+                  </a>
+                )}
+              </div>
+            </div>
           </div>
-        )}
-
-        {/* README or desc */}
-        <div className="mt-4 leading-relaxed text-gray-800 whitespace-pre-line">
-          {selected.readme ?? selected.desc}
         </div>
-
-        {/* Gallery */}
-        {selected.gallery?.length ? (
-          <div className="mt-4 grid grid-cols-2 gap-4">
-            {selected.gallery.map((g, i) => (
-              <Image
-                key={i}
-                src={g}
-                alt=""
-                width={400}
-                height={250}
-                className="rounded-lg border"
-                sizes="(max-width: 768px) 50vw, 400px"
-              />
-            ))}
-          </div>
-        ) : null}
-
-        {/* Links */}
-        <div className="mt-6 flex flex-wrap gap-3">
-          {selected.pbix && (
-            <a
-              href={selected.pbix}
-              className="rounded bg-black px-3 py-1.5 text-white text-sm hover:opacity-90"
-              download
-            >
-              Download PBIX (Interactive)
-            </a>
-          )}
-          {selected.pdf && (
-            <a
-              href={selected.pdf}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded border border-black px-3 py-1.5 text-sm hover:bg-black hover:text-white"
-            >
-              View PDF (Non-Interactive)
-            </a>
-          )}
-          {selected.link && selected.link !== "#" && (
-            <a
-              href={selected.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded border border-gray-300 px-3 py-1.5 text-sm hover:bg-gray-100"
-            >
-              Open Live Project
-            </a>
-          )}
-        </div>
-      </div>
-    </div>
-  </div>
-)}
+      )}
     </section>
   );
 }
