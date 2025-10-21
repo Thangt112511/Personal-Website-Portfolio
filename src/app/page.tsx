@@ -1,50 +1,104 @@
 import Image from "next/image";
+import ProjectsSection from "./components/projects";
+
 
 export default function Home() {
  const projects = [
     {
+      title: "Census Data Analytics Pipeline - U.S Education & Income Trends",
+      desc: "Built an interactive Power BI dashboard using AWS Athena census data (2015–2020) to examine how education levels affect income and poverty across the U.S., revealing that regions with more college graduates have higher incomes and lower poverty rates, while many Southern and rural areas still lag behind.",
+      readme:`U.S. Education, Income, and Poverty Dashboard (2015–2020)
+Overview
+
+This project explores how educational attainment influences income and poverty across the United States between 2015 and 2020. Using AWS Athena to query census data and Power BI for visualization, I built an interactive dashboard that tracks national, regional, state, and county-level trends to uncover where education most impacts economic outcomes.
+
+Tools & Technologies
+
+AWS S3 and Athena for storing and querying census datasets
+Power BI for data modeling, DAX measures, and interactive visualization
+SQL and DAX for data aggregation, year filters, and calculated insights
+ODBC Connector for live querying from Athena into Power BI
+
+Key Features
+
+Dynamic KPI cards that track % Bachelor+, Median Income, and Poverty % by selected year
+Interactive map that drills down from national to state to county levels
+Trend analysis showing changes in education and income over time
+Correlation visuals linking education attainment to income and poverty levels
+Year and State slicers that filter and compare across time and geography
+
+Insights
+
+Regions with higher college attainment consistently show higher income and lower poverty rates
+Southern and rural counties continue to lag behind despite national improvement
+Education growth is one of the strongest predictors of economic mobility in the dataset
+
+Skills Demonstrated
+
+Data pipeline development using AWS, Athena, and Power BI
+Dimensional modeling with star schema design
+DAX for dynamic measures and time-based filtering
+Interactive dashboard design with drill-through functionality
+Data storytelling and insight presentation
+
+Outcome
+
+A fully interactive Power BI dashboard that visualizes how education drives economic prosperity, helping policymakers, researchers, and analysts identify where investments in education can yield the greatest economic impact.`,
+      pbix: "/Sales Dashboard.pbix", 
+      pdf: "/Sales Dashboard.pdf",
+      img: "/proj-census.jpg",
+      tags: ["Python", "Power BI", "Excel", "AWS (S3 & Athena)", "SQL"],
+      featured: true,
+    },
+{
       title: "Sales & Profits Analytics Dashboard",
-      tech: "Python • Excel • Power BI",
       desc: "Developed to explore sales, costs and profits across cities, products, managers and purchase types.Includes dynamic filters, map visuals, KPI cards and interactable elements so that stake holders can understand the data, uncover trends and quickly identify profit drivers. Cleaned and prepared raw excel data and used DAX measures to calculate interactive KPIs. This dashboard would essentially allow restaurant managers to monitor real-time performance across different locations, track profitability trends and identify which products were high performing",
       pbix: "/Sales Dashboard.pbix", // add a custom field for pbix 
       pdf: "/Sales Dashboard.pdf",
       img: "/proj-sales.jpg",
+      tags: ["Python", "Power BI", "Excel", "DAX", "VBA"],
+      featured: false,
     },
 {
       title: "Holiday Impact on Retail Sales",
-      tech: "Python • Excel • Power BI • SQL",
       desc: "Enabled managers to monitor $21.7B sales as data across 45 stores, improving visibility into profitiability trends for holiday season. Authored an end to end retail analytics pipeline with SQL Server, Processed and transformed 6,000+ rows with SQL bulk inserts and star schema modeling, type safe SQL in order to designed and deliver a clean interactive Power BI model with multiple pages showing analytics on real world data such as growth rate, total sales over time.",
-      pbix: "/Walmart Project.pbit", // add a custom field for pbix 
+      pbix: "/Walmart Project.pbit", 
       pdf: "/Walmart Project.pdf",
       img: "/proj-walmart.jpg",
+      tags: ["Python", "Power BI", "Excel", "SQL"],
+      featured: true,
     },
 {
       title: "Automobile Performance Report",
-      tech: "Tableau • Excel",
       desc: "Created two connected dashboards that allow users to track fuel efficiency, horsepower, and brand popularity over time. Drill-down options include origin, cylinders, and model year, as well as dynamic filters, scatterplots, and bar charts. Provides a comprehensive image of how different regions and brands compared in terms of MPG, horsepower, and number of models between the 1970s and 1980s. Shows sale trends, brand breakdowns and model pricing insights alongside using filters to get the cleanest data. (click me!)",
       link: "https://public.tableau.com/app/profile/thang.tran3889/viz/Autombileproject/Branddash",
       img: "/proj-automobile.jpg",
+      tags: ["Tableau", "Excel"],
+      featured: false,
     },
     {
       title: "Employee Recognition & Rewards System",
-      tech: "Microsoft Slides • Microsoft Excel • Lucidchart • Python",
       desc: "Designed and documented a Slack-integrated Employee Recognition & Rewards System (ERRS) to improve morale, engagement and retention. Prepared a full report documentation that includes Gantt and PERT analysis and a break even analysis. Includes user requirements, project scope, communication plans, and project feasibility. Developed data flow diagrams that ex plores all processess to the system. (click me!)",
       link: "ERRS final report.docx.pdf",
       img: "/proj-errs.jpg",
+      tags: ["Microsoft Slides", "Excel", "Python", "Lucidchart"],
+      featured: false,
     },
       {
       title: "Netflix Data Mining Workflows Project",
-      tech: "Rapidminer • Microsoft Excel • Python ",
       desc: "Analyzed and cleaned nearly 9000 Netflix shows and movives using the Naives Bayes model to uncover patterns in genre, country of origin and ratings with a accuracy of 99.97%. Tested decision tree, logistic regression models as well, but they did worse than Naive Bayes.Found movies dominate over TV shows; dramas, comedies and documentaries are most common; US, India and UK lead in production.",
       link: "#",
       img: "/proj-netflix.jpg",
+      tags: ["Rapiderminer", "Excel", "Python"],
+      featured: false,
     },
 {
       title: "Healthcare Insurance Cost Analysis",
-      tech: "Pandas • Microsoft Excel • Python • Streamlit • GitHub • Plotly ",
-      desc: "Built a interactive data dashboard to explore how traits influence healthcare insurance charges. Performed data cleaning and exploratory data analysis on real world insurance data using Pandas and Seaborn/Plotly. Implemented multiple filters for users to inreactively explore the data with a streamlit sidebar. Deployed using Streamlit cloud and github for public access. (Click me!)",
+      desc: "Built a interactive data dashboard to explore how traits influence healthcare insurance charges. Performed data cleaning and exploratory data analysis on real world insurance data using Pandas and Seaborn/Plotly. Implemented multiple filters for users to inreactively explore the data with a streamlit sidebar. Deployed using Streamlit cloud and github for public access.",
       link: "https://thangtranhealthdashboard.streamlit.app/",
       img: "/proj-healthcare.jpg",
+      tags: ["Python", "Pandas", "Excel", "Github", "Plotly", "Streamlit"],
+      featured: true,
     },
   ];
  const experience = [
@@ -158,81 +212,8 @@ export default function Home() {
       </section>
 
       {/* PROJECTS */}
-      <section id="projects" className="mx-auto max-w-6xl px-6 py-16">
-        <h2 className="text-3xl font-semibold">Projects</h2>
-        <p className="mt-2 text-white/70">
-          Selected work with outcomes. Ask for code samples or deep-dive writeups.
-        </p>
+    <ProjectsSection projects={projects} />
 
-     <div className="mt-8 grid gap-8 md:grid-cols-2 items-stretch">
-{projects.map((p) => {
-  const clickable = p.link && p.link !== "#";
-
-  const CardContent = (
-    <article
-      className="relative z-10 h-full flex flex-col rounded-xl bg-white p-6 text-gray-900 shadow 
-  hover:shadow-xl transition-transform duration-200 hover:-translate-y-1"
-    >
-      <h3 className="text-xl font-semibold">{p.title}</h3>
-      <p className="mt-1 text-sm text-gray-500">{p.tech}</p>
-
-      {p.img && (
-        <Image
-          src={p.img}
-          alt={`${p.title} screenshot`}
-          width={640}
-          height={360}
-          className="mt-3 rounded-lg border border-gray-100"
-        />
-      )}
-
-      <p className="mt-3 text-gray-700">{p.desc}</p>
-
-      <div className="mt-4 flex flex-wrap gap-3">
-        {p.pbix && (
-          <a
-            href={p.pbix}
-            className="rounded bg-black px-3 py-1.5 text-white text-sm hover:opacity-90"
-            download
-          >
-            Interactive (PBIX)
-          </a>
-        )}
-        {p.pdf && (
-          <a
-            href={p.pdf}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded border border-black px-3 py-1.5 text-sm hover:bg-black hover:text-white"
-          >
-            Non-Interactive (PDF)
-          </a>
-        )}
-      </div>
-    </article>
-  );
-
-  return (
-    <div key={p.title} className="relative flex">
-      {/* gray offset that always matches the card height */}
-      <div className="pointer-events-none absolute inset-0 translate-x-[-0.5rem] translate-y-[0.5rem] rounded-xl bg-gray-200" />
-      {clickable ? (
-        <a
-          href={p.link!}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block"
-        >
-          {CardContent}
-        </a>
-      ) : (
-        CardContent
-      )}
-    </div>
-  );
-})}
-
-</div>
 <section id="experience" className="mx-auto max-w-6xl px-6 py-16">
   <h2 className="text-3xl font-semibold">Experience</h2>
   <p className="mt-2 text-white/70">Roles where I delivered measurable impact.</p>
@@ -308,7 +289,7 @@ export default function Home() {
   </div>
 </section>
 
-      </section>
+ 
 
       {/* CONTACT */}
       <section id="contact" className="mx-auto max-w-6xl px-6 py-16">
