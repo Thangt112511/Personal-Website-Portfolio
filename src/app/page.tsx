@@ -44,7 +44,7 @@ Data storytelling and insight presentation
 Outcome
 
 A fully interactive Power BI dashboard that visualizes how education drives economic prosperity, helping policymakers, researchers, and analysts identify where investments in education can yield the greatest economic impact.`,
-      pbix: "/Sales Dashboard.pbix", 
+      pbix: "/CensusDataAWS.pptx", 
       pdf: "/Sales Dashboard.pdf",
       img: "/proj-census.jpg",
       tags: ["Python", "Power BI", "Excel", "AWS (S3 & Athena)", "SQL"],
@@ -53,6 +53,7 @@ A fully interactive Power BI dashboard that visualizes how education drives econ
 {
       title: "Sales & Profits Analytics Dashboard",
       desc: "Developed to explore sales, costs and profits across cities, products, managers and purchase types.Includes dynamic filters, map visuals, KPI cards and interactable elements so that stake holders can understand the data, uncover trends and quickly identify profit drivers. Cleaned and prepared raw excel data and used DAX measures to calculate interactive KPIs. This dashboard would essentially allow restaurant managers to monitor real-time performance across different locations, track profitability trends and identify which products were high performing",
+      readme:``,
       pbix: "/Sales Dashboard.pbix", // add a custom field for pbix 
       pdf: "/Sales Dashboard.pdf",
       img: "/proj-sales.jpg",
@@ -62,6 +63,51 @@ A fully interactive Power BI dashboard that visualizes how education drives econ
 {
       title: "Holiday Impact on Retail Sales",
       desc: "Enabled managers to monitor $21.7B sales as data across 45 stores, improving visibility into profitiability trends for holiday season. Authored an end to end retail analytics pipeline with SQL Server, Processed and transformed 6,000+ rows with SQL bulk inserts and star schema modeling, type safe SQL in order to designed and deliver a clean interactive Power BI model with multiple pages showing analytics on real world data such as growth rate, total sales over time.",
+      readme:`Holiday Impact on Retail Sales - SQL Server + Power BI
+Overview
+
+This project analyzes how holiday periods affect retail sales performance using weekly store-level data. 
+A raw CSV file was transformed into a structured SQL data warehouse and connected to Power BI to produce an 
+interactive analytics dashboard. The report quantifies seasonality, 4-week rolling trends, and holiday-driven 
+revenue spikes, providing insights that can inform decisions around inventory, staffing, and promotional timing.
+
+Tools & Technologies
+
+SQL Server / SSMS – Data warehousing and T-SQL scripting
+Power BI Desktop – Data modeling, visualization, and DAX calculations
+DAX – Implemented measures for YoY%, 4-week rolling averages, and holiday metrics
+Data Modeling – Star schema design (DimDate, DimStore, FactWeeklySales)
+CSV Data Source – Weekly retail sales dataset (~6,000+ records)
+
+Key Features
+
+SQL Data Warehouse
+Engineered a star schema with modular T-SQL ETL scripts for dimension and fact table loading.
+Ingested and validated data via BULK INSERT, type-safe parsing, and integrity constraints.
+Implemented non-clustered indexes and data validation checks for faster and cleaner queries.
+Power BI Dashboard
+Built an interactive data model with defined relationships and a marked date table.
+Designed KPI cards, slicers, and time-series visuals for intuitive analysis.
+Developed DAX-based measures for 4-week rolling averages, YoY performance, and holiday share of sales.
+Created drillthrough pages, custom tooltips, and page navigation for a professional user experience.
+
+Insights
+
+Holiday weeks generated a disproportionate share of revenue, showing consistent sales spikes in late Q4.
+Holiday Share % and Holiday YoY % confirmed that holiday periods materially boost annual revenue growth.
+Rolling averages revealed clear seasonality patterns and post-holiday slowdowns across stores and years.
+Store-level analysis showed that a small group of stores accounts for the majority of total sales, reflecting an 80/20 distribution.
+Skills Demonstrated
+Data Engineering: SQL-based ETL design, schema modeling, constraints, and indexing.
+Business Intelligence: Power BI data modeling, DAX calculations, and KPI development.
+Visualization: Interactive dashboards with filters, drillthrough, and dynamic slicing.
+Analytical Thinking: Extracted actionable insights on seasonality and operational planning from raw data.
+
+Outcome
+
+Delivered a complete end-to-end analytics solution from raw CSV ingestion to a professional Power BI dashboard. 
+The project demonstrates proficiency in SQL data warehousing and business intelligence reporting, 
+providing a repeatable framework for analyzing sales performance and quantifying the impact of holidays on revenue.`,
       pbix: "/Walmart Project.pbit", 
       pdf: "/Walmart Project.pdf",
       img: "/proj-walmart.jpg",
@@ -95,6 +141,49 @@ A fully interactive Power BI dashboard that visualizes how education drives econ
 {
       title: "Healthcare Insurance Cost Analysis",
       desc: "Built a interactive data dashboard to explore how traits influence healthcare insurance charges. Performed data cleaning and exploratory data analysis on real world insurance data using Pandas and Seaborn/Plotly. Implemented multiple filters for users to inreactively explore the data with a streamlit sidebar. Deployed using Streamlit cloud and github for public access.",
+      readme: `Healthcare Insurance Cost Explorer
+Overview
+
+Developed a web-based dashboard that visualizes healthcare insurance charges for 1,300+ policyholders.
+Enables exploration of how age, BMI, smoking status, and region influence insurance costs.
+Designed to support data storytelling and demographic-specific insights through interactive filters.
+
+Tools & Technologies
+Python: Data manipulation, backend logic
+Pandas & NumPy: Data cleaning and analysis
+Plotly: Interactive visualizations (scatter plots, box plots)
+Streamlit: Web app development and deployment
+Git & GitHub: Version control and project sharing
+Streamlit Cloud: Application hosting
+
+Key Features
+
+Interactive filters for region, smoker status, sex, and age range
+Dynamic scatter plots and box plots with hover/click data point inspection
+Sidebar-driven UI for live data segmentation
+Clean layout with overview, charts, and insights sections
+Fully deployed and accessible via web link
+
+Insights
+
+Smoking status is the strongest cost driver, increasing charges by over 300%
+Higher BMI and age are correlated with increased charges
+Southeast region shows slightly higher median insurance costs
+Non-smokers under 30 with BMI under 25 have the lowest average charges
+
+Skills Demonstrated
+
+Data wrangling and preprocessing
+Exploratory data analysis and statistical insight generation
+Building interactive dashboards for business intelligence
+Visual storytelling through data
+App deployment and version control workflows
+
+Outcome
+
+Delivered a fully functional and publicly accessible dashboard
+Provides clear, filterable views for demographic-specific insurance cost trends
+Simulates a real-world analysis product for business or healthcare stakeholders`,
       link: "https://thangtranhealthdashboard.streamlit.app/",
       img: "/proj-healthcare.jpg",
       tags: ["Python", "Pandas", "Excel", "Github", "Plotly", "Streamlit"],

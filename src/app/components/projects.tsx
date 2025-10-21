@@ -254,7 +254,7 @@ export default function ProjectsSection({ projects }: { projects: Project[] }) {
                     className="rounded bg-black px-3 py-1.5 text-white text-sm hover:opacity-90"
                     download
                   >
-                    Download PBIX (Interactive)
+                    View Dashboard (Interactive)
                   </a>
                 )}
                 {selected.pdf && (
