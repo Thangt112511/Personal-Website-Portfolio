@@ -247,9 +247,10 @@ Simulates a real-world analysis product for business or healthcare stakeholders`
       period: "June 2023 – May 2024",
       location: "Wilmington, MA",
       bullets: [
-        "I had a really good time working at Lightforce, I collaborated with the process engineering team and the floor technicians to help improve process and production by 20%. .",
+        "During my time at Lightforce my main priorities were to run QA testing for proprietary scanning and processing software that is used every day by floor technicians, helping them increase productivity.",
         "Gained alot of experience in time management, cross team collaboration and leadership through the engineers and my supervisor. Was given the oppurtunity to run my own printline of marketing parts for the whole company, printing with low error rates and efficient time",
         "Assisted in python code debugging and quality assurance for gear that the floor technicians used, also assisted the IT team on several occasions with computer or hardware issues",
+        "I would also regularly gather material testing data using dogbone stress testing method to gain insight on resin mold material usage",
       ],
       logo: "/lightforce.jpg",
       link: "https://lf.co/",
