@@ -6,9 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 import Reveal from "./components/Reveal";
 
-/** Popup that reads ?sent=1 from the URL via useSearchParams.
- * Wrapped in <Suspense> in the page to satisfy Next.js requirement.
- */
+
 function SentPopup() {
   const sp = useSearchParams();
   const sent = sp.get("sent") === "1";
@@ -235,7 +233,7 @@ Simulates a real-world analysis product for business or healthcare stakeholders`
       location: "Remote/Boston, MA",
       bullets: [
         "Maintained and reconciled donation and reporting datasets across cash, check, and digital transactions to ensure financial data integrity for nonprofit clients.",
-        "Developed and automated reporting dashboards in Excel (pivot tables, macros, VLOOKUP) and Google Sheets, improving reporting accuracy and efficiency.",
+        "Developed and automated reporting dashboards in Power BI, improving reporting accuracy and efficiency and allowing for shareholders to grasp data trends.",
         "Queried and validated data using SQL, enhancing the reliability of donation and revenue tracking systems.",
         "Created visualizations in Tableau and Power BI to highlight donation trends and resource allocation for nontechnical stakeholders.",
         "Partnered with product, engineering, and customer success teams to improve data pipelines, strengthen compliance, and deliver timely, insight-driven reports.",
