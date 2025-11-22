@@ -226,21 +226,7 @@ Simulates a real-world analysis product for business or healthcare stakeholders`
   ];
 
   const experience = [
-    {
-      company: "CounterApp",
-      role: "Data Coordinator",
-      period: "Aug 2024 – Jun 2025",
-      location: "Remote/Boston, MA",
-      bullets: [
-        "Maintained and reconciled donation and reporting datasets across cash, check, and digital transactions to ensure financial data integrity for nonprofit clients.",
-        "Developed and automated reporting dashboards in Power BI, improving reporting accuracy and efficiency and allowing for shareholders to grasp data trends.",
-        "Queried and validated data using SQL, enhancing the reliability of donation and revenue tracking systems.",
-        "Created visualizations in Tableau and Power BI to highlight donation trends and resource allocation for nontechnical stakeholders.",
-        "Partnered with product, engineering, and customer success teams to improve data pipelines, strengthen compliance, and deliver timely, insight-driven reports.",
-      ],
-      logo: "/CounterApp.jpg",
-      link: "https://counterapp.io/",
-    },
+ 
     {
       company: "Lightforce Orthodontics",
       role: "Process Engineering Co-op",
