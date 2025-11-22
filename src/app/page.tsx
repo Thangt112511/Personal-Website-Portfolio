@@ -229,7 +229,7 @@ Simulates a real-world analysis product for business or healthcare stakeholders`
  
     {
       company: "Lightforce Orthodontics",
-      role: "Process Engineering Co-op",
+      role: "Process Analyst Co-op",
       period: "June 2023 – May 2024",
       location: "Wilmington, MA",
       bullets: [
